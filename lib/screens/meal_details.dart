@@ -14,13 +14,8 @@ class MealDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Widget content = FadeInImage(
-    //   placeholder: MemoryImage(kTransparentImage),
-    //   image: NetworkImage(meal.imageUrl),
-    //   fit: BoxFit.cover,
-    //   height: 300,
-    //   width: double.infinity,
-    // );
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
+    final mealIsFavorite = favoriteMeals.contains(meal);
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +36,7 @@ class MealDetailsScreen extends ConsumerWidget {
                 ),
               );
             },
-            icon: const Icon(Icons.star),
+            icon: Icon(mealIsFavorite ? Icons.star : Icons.star_border),
           )
         ],
       ),
